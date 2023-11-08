@@ -8,6 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+nav{
+margin-bottom:40px;
+}
+</style>
 </head>
 <body>
 	<header>

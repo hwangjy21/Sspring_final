@@ -15,14 +15,21 @@ body {
 	margin: 0 auto;
 }
 
+.input-group mb-3 {
+	text-align: center;
+	justify-content: center;
+}
+
 h1 {
 	text-align: center;
 	padding: 20px;
 }
 
 table {
-	width: 80%;
+	width: 200%;
 	margin: 0 auto;
+	
+	
 	border-collapse: collapse;
 }
 
@@ -36,6 +43,9 @@ table {
 table, th, td {
 	border: 1px solid #ccc;
 	margin: 60px auto;
+
+	text-align: center;
+	width: 100%;
 }
 
 th, td {
@@ -44,7 +54,7 @@ th, td {
 }
 
 th {
-	background-color: #35424a;
+	background-color: #1BBC9B;
 	color: #fff;
 }
 
@@ -77,20 +87,16 @@ a:hover {
 
 .button:hover {
 	background-color: #0056b3;
+	text-align: center;
 }
 
 .nav_box {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-
-
-  display: flex;
-  justify-content: center;
-  padding: 10px; 
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: baseline;
+	justify-content: center;
 }
-
 </style>
 </head>
 <body>
@@ -162,35 +168,35 @@ a:hover {
 				</c:forEach>
 			</tbody>
 		</table>
+
+		<div class="nav_box">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item ${(ph.prev eq false)?'disabled':'' }"><a
+						class="page-link"
+						href="/board/list?pageNo=${ph.startPage-1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword }">Previous</a></li>
+					<c:forEach begin="${ph.startPage }" end="${ph.endPage}" var="i">
+						<li class="page-item"><a class="page-link"
+							href="/board/list?pageNo=${i}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">${i}</a></li>
+					</c:forEach>
+
+
+					<!-- 다음 -->
+					<li class="page-item ${(ph.next eq false) ? 'disabled' : '' }">
+						<a class="page-link"
+						href="/board/list?pageNo=${ph.endPage + 1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
+							Next</a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+		<c:if test="${not empty isnot_d}">
+			<script>
+				alert("${isnot_d}");
+			</script>
+		</c:if>
 	</div>
-	<div class="nav_box">
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
-				<li class="page-item ${(ph.prev eq false)?'disabled':'' }"><a
-					class="page-link"
-					href="/board/list?pageNo=${ph.startPage-1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword }">Previous</a></li>
-				<c:forEach begin="${ph.startPage }" end="${ph.endPage}" var="i">
-					<li class="page-item"><a class="page-link"
-						href="/board/list?pageNo=${i}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">${i}</a></li>
-				</c:forEach>
-
-
-				<!-- 다음 -->
-				<li class="page-item ${(ph.next eq false) ? 'disabled' : '' }">
-					<a class="page-link"
-					href="/board/list?pageNo=${ph.endPage + 1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
-						Next</a>
-				</li>
-			</ul>
-		</nav>
-
-	</div>
-<c:if test="${not empty isnot_d}">
-    <script>
-        alert("${isnot_d}");
-    </script>
-</c:if>
-
 
 </body>
 </html>
